@@ -1,0 +1,32 @@
+{
+ 
+    "UserName": "Blessing1",
+    "Password": "Cypress1#",
+    "Expected": "Profile"
+}
+
+
+{
+ 
+    "UserName": "Blessing1",
+    "Password": "Cypress1",
+    "Expected": "Invalid username or password!"
+}
+
+
+{
+ 
+    "UserName": "Blessing1",
+    "Password": "Cypress1",
+    "Expected": "Invalid username or password!"
+}
+
+{
+ 
+    "UserName": "Bloosing",
+    "Password": "Cypress1#",
+    "Expected": "Invalid username or password!"
+}
+
+
+
