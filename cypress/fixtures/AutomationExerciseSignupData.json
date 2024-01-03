@@ -1,0 +1,102 @@
+
+  
+  
+  
+
+[
+  {
+    "scenarioName": "ValidSignUp",
+    "data": {
+      "Name": "hmoe",
+      "Email": "ty@gmail.com",
+      "Expected": "ENTER ACCOUNT INFORMATION",
+
+
+
+      "Password":  "Adedo11",
+  
+     "Date of Birth":  "07/05/1989",
+  
+    
+      "first_name":  "Delinda",
+  
+      "last_name":  "George",
+  
+    
+      "Company":  "Siiderss",
+     
+      "Address1":  "12",
+  
+      "Address2":  "Guess Street. Test Boulevard",
+  
+    
+      "Country":  "Canada",
+  
+      "State":  "Vancouver",
+  
+      "City":  "Burnaby",
+  
+      "Zipcode":  "VN1 U45",
+  
+      "mobile_number":  "07775782224" 
+  
+    }
+  },
+
+  
+  {
+    "scenarioName": "invalidEmail",
+    "data": {
+      "Name": "Doyin-A",
+      "EmailAddress": "ij.on",
+      "Expected": "ENTER ACCOUNT INFORMATION not visible"
+    }
+  },
+  {
+    "scenarioName": "InvalidSignUp2",
+    "data": {
+      "Name": "Doyin-A",
+      "Email Address": "ij.on",
+      "Expected": "ENTER ACCOUNT INFORMATION not visible"
+    }
+  }
+]
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
