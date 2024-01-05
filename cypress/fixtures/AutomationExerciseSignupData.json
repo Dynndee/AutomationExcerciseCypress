@@ -1,14 +1,10 @@
 
-  
-  
-  
-
 [
   {
     "scenarioName": "ValidSignUp",
     "data": {
-      "Name": "hmoe",
-      "Email": "ty@gmail.com",
+      "Name": "Diana",
+      "Email": "Diana123@gmail.com",
       "Expected": "ENTER ACCOUNT INFORMATION",
 
 
@@ -45,18 +41,18 @@
 
   
   {
-    "scenarioName": "invalidEmail",
+    "scenarioName": "invalidEmail1",
     "data": {
       "Name": "Doyin-A",
-      "EmailAddress": "ij.on",
+      "EmailAddress": "bj@ij.on",
       "Expected": "ENTER ACCOUNT INFORMATION not visible"
     }
   },
   {
-    "scenarioName": "InvalidSignUp2",
+    "scenarioName": "InvalidName",
     "data": {
-      "Name": "Doyin-A",
-      "Email Address": "ij.on",
+      "Name": "Bola56*",
+      "Email Address": "Shola@con",
       "Expected": "ENTER ACCOUNT INFORMATION not visible"
     }
   }
