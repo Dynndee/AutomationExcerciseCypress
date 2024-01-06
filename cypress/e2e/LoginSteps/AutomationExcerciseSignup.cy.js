@@ -108,7 +108,7 @@ describe('AutomationExerciseSignup', function () {
        signUpPage.SetName(randomData.Name);
        signUpPage.SetEmail(randomData.Email);
 
-       cy.screenshot();
+       cy.screenshot("HomePage");
        signUpPage.ClickSignupButton();
        signUpPage.VerifyEnterAccountInfo();
        signUpPage.ClickTitle()
@@ -124,8 +124,7 @@ describe('AutomationExerciseSignup', function () {
       
        signUpPage.SetFirstName(randomData.first_name)
        signUpPage.SetLastName(randomData.last_name)
-       signUpPage.SetCompany(randomData.Company)
-      
+       signUpPage.SetCompany(randomData.Company)      
        signUpPage.SetAddresss1(randomData.Address1)
        signUpPage.SetAddress2(randomData.Address2)
        signUpPage.SelectCountry()
@@ -133,10 +132,9 @@ describe('AutomationExerciseSignup', function () {
        signUpPage.SetCity(randomData.City)
        signUpPage.SetZipcode(randomData.Zipcode)
        signUpPage.SetMobileNumber(randomData.mobile_number)
-       cy.screenshot();
+       cy.screenshot("ContactDetails");
        signUpPage.ClickCreateAccoubtButton()
-       signUpPage.VerifyAccountCreated()
-
+       signUpPage.VerifyAccountCreated("AccountCreated")
 
        cy.screenshot();
       });

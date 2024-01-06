@@ -19,6 +19,9 @@
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
+// for HTML Reporter
+import 'cypress-mochawesome-reporter/register';
+
 
 
    
