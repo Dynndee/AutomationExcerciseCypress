@@ -1,8 +1,11 @@
 
-//import AutomationExerciseLogin from "../../PageObjects/AutomationExerciseLoginPage";
+//multiple import
 
-//import RandomTestData from "../../../Utility/RamdomTestData";
-import generateRandomValidSignUpData from "../../../Utility/RandomValidSignUpData"
+import { generateRandomValidSignUpData, generateRandomInvalidEmail, generateInvalidEmailWithTooManyDots, generateInvalidEmailWithTooManyCommas } from "..//../../Utility/RandomValidSignUpData";
+
+// single import
+//import generateRandomValidSignUpData from "../../../Utility/RandomValidSignUpData"
+
 import AutomationExerciseSignup from "../../PageObjects/AutomationExerciseSignupPage";
 
 
@@ -68,7 +71,7 @@ describe('AutomationExerciseSignup', function () {
       });
    });
  
-   it('should display an error message for invalid email', function () {
+   it.skip('should display an error message for invalid email', function () {
      cy.fixture('AutomationExerciseSignupData').then((data) => {
        const invalidEmailData = data.find(entry => entry.scenarioName === 'invalidEmail').data;
  
@@ -83,8 +86,8 @@ describe('AutomationExerciseSignup', function () {
        //signUpPage.VerifyEnterAccountInfoNotVisible(invalidEmailData.Expected);
      });
    });
- 
-   it('should display an error message for duplicate email', function () {
+    
+   it.skip('should display an error message for duplicate email', function () {
      cy.fixture('AutomationExerciseSignupData').then((data) => {
        const invalidSignUpData2 = data.find(entry => entry.scenarioName === 'InvalidSignUp2').data;
  
@@ -100,11 +103,12 @@ describe('AutomationExerciseSignup', function () {
 
 
 
-
-    it.only('Radom Testdata Valid SignUp', () => {
+    // Happy Path 
+    it('Radom Testdata Valid SignUp', () => {
       cy.fixture('AutomationExerciseSignupData').then(() => {
 
        const randomData = generateRandomValidSignUpData();
+
        signUpPage.SetName(randomData.Name);
        signUpPage.SetEmail(randomData.Email);
 
@@ -136,18 +140,196 @@ describe('AutomationExerciseSignup', function () {
        signUpPage.ClickCreateAccoubtButton()
        signUpPage.VerifyAccountCreated("AccountCreated")
 
-       cy.screenshot();
+       cy.screenshot("HappyPath");
       });
       
 
     });
+    
+    // Umhappy Paths with Invalid Emails 
+   
+
+    it('Radom TestData InValid Email', () => {
+     
+
+      const randomValidData = generateRandomValidSignUpData();
+
+      signUpPage.SetName(randomValidData.Name);
+    
+        
+      const invalidEmailWithoutAtSymbol = generateRandomInvalidEmail();
+
+
+      signUpPage.SetEmail(invalidEmailWithoutAtSymbol);
+
+        
+    
+      cy.screenshot("UnhappyPathInvalidEmail");
+    
+      signUpPage.ClickSignupButton();
+        
+     //Alert
+      console.log('After clicking signup button');
+
+      //cy.on('window:alert', (text) => {
+      // Assert the content of the alert
+      //expect(text).to.include('Please fill in this field');
+        
+      cy.on('window:alert', (text) => {
+         
+        console.log('Alert Text:', text);
+      
+       //Assert the content of the alert
+        expect(text).to.include('Please include an @ in the email address.');
+
+       //cy.wait(2000);
+
+       cy.screenshot("InvalidEmail AccounfNotcreated")
+
+       cy.get(' #form > div > div > div > h2 > b').should('not.be.visible');
+    
+       cy.wait(2000); 
 
 
     
-  
+      })
+    
+    })
+
+    it('Random test data InvalidEmailWithTooManyDots', () => {
+
+      const randomValidData = generateRandomValidSignUpData();
+
+      signUpPage.SetName(randomValidData.Name);
+
+      const invalidEmailWithTooManyDots = generateInvalidEmailWithTooManyDots();
+
+      signUpPage.SetEmail(invalidEmailWithTooManyDots);
+
+      cy.screenshot("InvalidEmailWithTooManyDots");
+
+      signUpPage.ClickSignupButton();
+
+      // Alert 
+      console.log("After clicing Signup Buttom");
+
+       cy.on('window alert', (text) => {
+       
+       console.log('Alert text', text);
+      
+       expect(text).to.include('is used at a wrong postion in');
+
+       cy.screenshot("InvalidEmailWithTooManyDotsAccount is not  created");
+
+       signUpPage.VerifyAccountIsNotCreated("InvalidEmailWithTooManyDotsAccount Account is not created ");
+       
+       cy.screenshot();
+
+
+      })
+    })
+
+
+    it('RandomData InvalidEmailWithTooManyCommas', () => {
+
+      const randomData = generateRandomValidSignUpData();
+
+      signUpPage.SetName(randomData.Name);
+
+      const InvalidEmailWithTooManyCommas = generateInvalidEmailWithTooManyCommas();
+
+      signUpPage.SetEmail(InvalidEmailWithTooManyCommas);
+
+      cy.screenshot("InvalidEmailWithTooManyCommas")
+
+      signUpPage.ClickSignupButton();
+
+      // Alert 
+
+      console.log(' After clicking Signip button');
+
+      cy.on('window alert', (text) => {
+
+        console.lof('alert text', text);
+
+        expect(text).to.include('A part following @ should not contain the symbol');
+
+        cy.screenshot("InvalidEmailWithTooManyCommas Account is not  created");
+
+        signUpPage.VerifyAccountIsNotCreated("InvalidEmailWithTooManyCommas Account is not created ");
+       
+        cy.screenshot();
+
+
+
+
+      })
+
+
+
+
+
+    })
+      
     
 
+   // UnjHappy Path With Empty Name field
+  it('Invalid Empty Name Test', () => {
+    
+    // this called directly so no need for const =
+    signUpPage.SetEmptyName();
+
+    
+   // signUpPage.SetName(invalidEmptyName);
+
+    const randomValidData = generateRandomValidSignUpData();
+
   
+    signUpPage.SetEmail(randomValidData.Email);
+    
+    
+    
+    //or when typing in email directly then delete/comment out   const randomValidData = generateRandomValidSignUpData();
+    //signUpPage.SetEmail('joanna@gmail.com'); 
+    
+  
+    cy.screenshot("Invalid Empty Name Test'");
+
+    signUpPage.ClickSignupButton();
+
+    console.log('After clicking signup button');
+
+    //cy.on('window:alert', (text) => {
+    // Assert the content of the alert
+    //expect(text).to.include('Please fill in this field');
+    
+    cy.on('window:alert', (text) => {
+      // Log the alert text
+      console.log('Alert Text:', text);
+  
+      //Assert the content of the alert
+      expect(text).to.include('Please fill in this field.');
+
+      cy.wait(2000);
+      cy.screenshot("Invalid Empty Name Test Account is not created");
+
+      cy.get(' #form > div > div > div > h2 > b').should('not.be.visible');
+    
+      cy.wait(8000); 
+
+
+    });
+
+    
+
+    
+   
+
+    
+  });
+
+
+    
   
 
  

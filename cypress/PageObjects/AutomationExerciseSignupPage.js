@@ -7,13 +7,21 @@ class AutomationExerciseSignup
 
     SetName(name)
     {
-
+       
        cy.get(" div > form > input[type=text]:nth-child(2)").type(name)
        
     
 
     }
 
+    SetEmptyName() {
+        
+        // this will get the name field clear it . no need for element text name locator
+        cy.get('[data-qa="signup-name"]').clear()
+       
+        
+    
+    }
 
     SetEmail(email)
     {
@@ -276,15 +284,17 @@ class AutomationExerciseSignup
     VerifyAccountCreated()
     {
         
-         //  cy.get('b').should('have.text','Account Created!');
-        //
+       
         cy.get(' #form > div > div > div > h2 > b').should('have.text','Account Created!');
     }
 
+    VerifyAccountIsNotCreated()
+    {
+       
+        cy.get(' #form > div > div > div > h2 > b').should('be.visible');
+    }
 
-
-
-
+    
 }
 
 

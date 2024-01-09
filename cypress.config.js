@@ -18,6 +18,3 @@ module.exports = defineConfig({
   },
 });
 
-{
-  "chromeWebSecurity"; false
-}

@@ -41,15 +41,16 @@
 
   
   {
-    "scenarioName": "invalidEmail1",
+    "scenarioName": "invalidEmail",
     "data": {
       "Name": "Doyin-A",
-      "EmailAddress": "bj@ij.on",
+      "EmailAddress": "bjij.on",
       "Expected": "ENTER ACCOUNT INFORMATION not visible"
     }
   },
+  
   {
-    "scenarioName": "InvalidName",
+    "scenarioName": "InvalidEmptyName",
     "data": {
       "Name": "Bola56*",
       "Email Address": "Shola@con",
