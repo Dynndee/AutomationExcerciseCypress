@@ -1,0 +1,19 @@
+# Define the stages of the pipeline
+stages:
+  - test
+
+# Define the Cypress test job
+cypress:
+  # Specify the stage for this job
+  stage: test
+  
+  # Specify the image to use for the job
+  image: cypress/base:14.17.0
+  
+  # Define the script to be executed in the job
+  script:
+    # Install dependencies
+    - npm install
+    
+    # Run Cypress tests
+    - npx cypress run
