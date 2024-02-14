@@ -323,9 +323,6 @@ describe('AutomationExerciseSignup', function () {
     
 
     
-   
-
-    
   });
 
 
